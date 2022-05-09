@@ -1,11 +1,13 @@
-package controllers;
+package company.controllers;
 
-import objects.Product;
+import company.objects.Product;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
+
+import static company.dbhelper.DBConnection.getConnection;
 
 public class ProductController {
 
@@ -49,7 +51,8 @@ public class ProductController {
 
     public static boolean checkIfAdmin() {
         try {
-            ps = getConnection().prepareStatement("SELECT * FROM users WHERE username='" + name + "'");
+
+            //ps = getConnection().prepareStatement("SELECT * FROM users WHERE username='" + name + "'");
             rs = ps.executeQuery();
             String userRole;
             while (rs.next()) {
@@ -127,7 +130,6 @@ public class ProductController {
                 System.out.println("Database Error");
                 return false;
             }
-            return false;
         } else {
             System.out.println("Your role does not grant you possibility to edit products");
         }

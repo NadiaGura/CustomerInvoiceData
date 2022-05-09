@@ -1,4 +1,4 @@
-package objects;
+package company.objects;
 
 public class Invoice {
 

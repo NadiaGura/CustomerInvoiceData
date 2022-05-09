@@ -1,4 +1,6 @@
-package login;
+package company.login;
+
+import company.dbhelper.DBConnection;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,7 +27,7 @@ public class Authorisation {
 
         if(role.equalsIgnoreCase("sales person")|| role.equalsIgnoreCase("admin")) {
             try {
-                ps = getConnection().prepareStatement("INSERT INTO users(username, password, role) VALUES('" + username + "', '" + password + "', '" + role + "')");
+                ps = DBConnection.getConnection().prepareStatement("INSERT INTO users(username, password, role) VALUES('" + username + "', '" + password + "', '" + role + "')");
                 ps.execute();
                 return true;
 
@@ -55,7 +57,7 @@ public class Authorisation {
 
         try {
             //   ps = getConnection().prepareStatement("SELECT * FROM users WHERE username = '" + loginUsername + "' and password = '" + loginPassword + "'");
-            ps = getConnection().prepareStatement("SELECT * FROM users WHERE username = ?  and password = ?");
+            ps = DBConnection.getConnection().prepareStatement("SELECT * FROM users WHERE username = ?  and password = ?");
             ps.setString(1, loginUsername);
             ps.setString(2, loginPassword);
 

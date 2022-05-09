@@ -1,15 +1,12 @@
-package objects;
+package company.objects;
 
-public class Product {
+public class Users {
 
     private int id;
     private String name;
-    private float price;
+    private String role; //admin/ salesManager
 
-    public Product() {
-
-    }
-
+    //getters setters
     public int getId() {
         return id;
     }
@@ -26,13 +23,16 @@ public class Product {
         this.name = name;
     }
 
-    public float getPrice() {
-        return price;
+    public String getRole() {
+        return role;
     }
 
-    public void setPrice(float price) {
-        this.price = price;
+    public void setRole(String role) {
+        this.role = role;
     }
 
+    //empty constructor
+    public Users() {
+    }
 
 }
