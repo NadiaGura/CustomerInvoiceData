@@ -14,7 +14,7 @@ public class Authorisation {
     private static ResultSet rs;
 
 
-    public static boolean singUp() {
+    public static boolean signUp() {
 
         System.out.println("Enter username: ");
         String username = scanner.nextLine();
@@ -22,22 +22,31 @@ public class Authorisation {
         System.out.print("Enter password:");
         String password = scanner.nextLine();
 
+        System.out.print("Enter Your name:");
+        String name = scanner.nextLine();
+
+        System.out.print("Enter Your surname:");
+        String surname = scanner.nextLine();
+
         System.out.println("Choose your role (admin, sales person): ");
         String role = scanner.nextLine();
 
         if(role.equalsIgnoreCase("sales person")|| role.equalsIgnoreCase("admin")) {
             try {
-                ps = DBConnection.getConnection().prepareStatement("INSERT INTO users(username, password, role) VALUES('" + username + "', '" + password + "', '" + role + "')");
+              //ps = DBConnection.getConnection().prepareStatement("INSERT INTO users(username, password, name, surname, role) VALUES('" + username + "', '" + password + "', '" + name + "', '" + surname + "', '" + role + "')");
+                ps = DBConnection.getConnection().prepareStatement("INSERT INTO users(username, password, name, surname, role) VALUES(?, ?, ?, ?, ?)");
+                ps.setString(1, username);
+                ps.setString(2, password);
+                ps.setString(3, name);
+                ps.setString(4, surname);
+                ps.setString(5, role);
                 ps.execute();
                 return true;
-
-
 
             } catch (SQLException e) {
                 System.out.println("Username is probably already used. Choose another one.");
                 System.out.println(e.getMessage());
                 return false;
-
             }
 
         }else {
