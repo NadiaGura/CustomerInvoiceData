@@ -22,16 +22,11 @@ public class InvoiceController {
         System.out.print("Enter the date of the invoice: ");
         String  invoiceDate = scanner.next();
 
-        System.out.print("Enter the date of the invoice: ");
-        float  sum = scanner.nextFloat();
-
-
 
         try {
-            ps = getConnection().prepareStatement("INSERT INTO invoices (customersid, date, sum) VALUES(?, ?, ?)");
+            ps = getConnection().prepareStatement("INSERT INTO invoices (customersid, date) VALUES(?, ?)");
             ps.setInt(1, customersid);
             ps.setString(2, invoiceDate);
-            ps.setFloat(3, sum);
             ps.execute();
             return true;
 
@@ -42,5 +37,45 @@ public class InvoiceController {
 
 
 }
+    public static boolean deleteInvoice() {
+
+        System.out.print("Enter the id of the invoice: ");
+        int id = scanner.nextInt();
+        try {
+            ps = getConnection().prepareStatement("DELETE FROM invoices WHERE id=" + id);
+            ps.execute();
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println("Database Error");
+            return false;
+
+        }
+
+    }
+
+
+    public static boolean editInvoice() {
+
+        System.out.println("Enter the id of the invoice: ");
+        int id = scanner.nextInt();
+
+        System.out.println("Enter new customersid:");
+        int newCustomersId = scanner.nextInt();
+
+        System.out.println("Enter new date:");
+        String newDate = scanner.next();
+
+        try {
+            ps = getConnection().prepareStatement("UPDATE invoices SET customersid ='" + newCustomersId + "' WHERE id =" + id);
+            ps = getConnection().prepareStatement("UPDATE products SET price ='" + newDate + "' WHERE id =" + id);
+            ps.execute();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Database Error");
+            return false;
+        }
+
+    }
 
 }
