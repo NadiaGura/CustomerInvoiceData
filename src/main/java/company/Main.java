@@ -1,5 +1,7 @@
 package company;
 
+import company.controllers.ProductController;
+import company.controllers.UsersController;
 import company.dbhelper.DBConnection;
 import company.login.Authorisation;
 
@@ -8,7 +10,11 @@ public class Main {
 
 //        DBConnection.getConnection();
 //
-        Authorisation.signUp();
+       // Authorisation.signUp();
+        //UsersController.deleteUser();
+        ProductController.addProduct();
+
+
 
 
 

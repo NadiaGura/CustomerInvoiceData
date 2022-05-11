@@ -50,12 +50,9 @@ public class ProductController {
     }
 
     public static boolean checkIfAdmin() {
-
-        System.out.print("Enter your id: ");
-        int id = scanner.nextInt();
         try {
 
-            ps = getConnection().prepareStatement("SELECT * FROM users WHERE WHERE id=" + id);
+         //   ps = getConnection().prepareStatement("SELECT * FROM users WHERE username='" + name + "'");
             rs = ps.executeQuery();
             String userRole;
             while (rs.next()) {
@@ -84,15 +81,10 @@ public class ProductController {
             System.out.print("Enter the price of the product: ");
             float price = scanner.nextFloat();
 
-            System.out.print("Enter quantity of the product: ");
-            int quantity = scanner.nextInt();
-
             try {
-                ps = getConnection().prepareStatement("INSERT INTO products (name, price, quantity)" +
-                        "VALUES('" + name + "', " + price + ", " + quantity + ")");
+                ps = getConnection().prepareStatement("INSERT INTO products (name, price) VALUES('" + name + "', " + price + ")");
                 ps.execute();
                 return true;
-
             } catch (SQLException e) {
                 System.out.println("Database Error");
                 return false;
@@ -145,12 +137,12 @@ public class ProductController {
     }
 
 
-    public static void changeQuantity() {
+    public static void changeCount() {
         if (ProductController.checkIfAdmin()) {
             System.out.print("Enter the id of the product: ");
-            int quantity = scanner.nextInt();
+            int count = scanner.nextInt();
             try {
-                ps = getConnection().prepareStatement("UPDATE products SET count WHERE quantity=" + quantity + ")");
+                ps = getConnection().prepareStatement("UPDATE products SET count WHERE count=" + count);
                 ps.execute();
 
             } catch (SQLException e) {
@@ -158,7 +150,7 @@ public class ProductController {
 
             }
         } else {
-            System.out.println("Your role does not grant you possibility to change quantity");
+            System.out.println("Your role does not grant you possibility to change count");
         }
     }
 
