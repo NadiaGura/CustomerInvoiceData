@@ -9,31 +9,19 @@ import static company.dbhelper.DBConnection.getConnection;
 
 public class UsersController {
 
-
-        //initialize scanner
-        private static Scanner scanner = new Scanner(System.in);
-        private static PreparedStatement ps;
-        private static ResultSet rs;
-
-    public static void deleteUser() {
-       // if (ProductController.checkIfAdmin()) {
-            System.out.print("Enter the id of the user: ");
-            int id = scanner.nextInt();
-            try {
-                ps = getConnection().prepareStatement("DELETE FROM users WHERE id=" + id);
-                ps.execute();
-
-            } catch (SQLException e) {
-                System.out.println("Database Error");
-
-            }
-     //   } else {
-       //     System.out.println("Your role does not grant you possibility to delete products");
-      //  }
-    }
+    private static Scanner scanner = new Scanner(System.in);
+    private static PreparedStatement ps;
+    private static ResultSet rs;
 
 
-        //METHOD TO GET/READ INVENTORY BY ID/NAME
+    public class StudentController {
+
+//        //initialize scanner
+//        private Scanner sc = new Scanner(System.in);
+//        private PreparedStatement ps;
+//        private ResultSet rs;
+//
+//        //METHOD TO GET/READ INVENTORY BY ID/NAME
 //        public  boolean getProductById(){
 //            //ask user for data
 //            System.out.println("Please enter product ID: ");
@@ -112,4 +100,25 @@ public class UsersController {
 //            }
 //        }
 
+
+        // Method to delete user for admin
+
+        public void deleteUser() {
+            if (ProductController.checkIfAdmin()) {
+                System.out.print("Enter the id of the user: ");
+                int id = scanner.nextInt();
+                try {
+                    ps = getConnection().prepareStatement("DELETE FROM users WHERE id=" + id);
+                    ps.execute();
+
+                } catch (SQLException e) {
+                    System.out.println("Database Error");
+
+                }
+            } else {
+                System.out.println("Your role does not grant you possibility to delete users");
+            }
+        }
+
+   }
 }
