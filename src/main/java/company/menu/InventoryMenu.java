@@ -33,7 +33,7 @@ public class InventoryMenu {
                 System.out.println(ProductController.editProduct() ? "Products properties edited" : "Data not edited");
                 break;
             case 5:
-                ProductController.changeCount();
+                ProductController.changeQuantity();
                 break;
             default:
                 System.out.println("Invalid option. Try again.");

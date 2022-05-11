@@ -114,7 +114,7 @@ public class ProductController {
     }
 
 
-    public static void changeCount() {
+    public static void changeQuantity() {
 
             System.out.print("Enter the id of the product: ");
             int id = scanner.nextInt();
@@ -163,7 +163,7 @@ public class ProductController {
         }
 
 
-        }
+    }
 
 
 }
