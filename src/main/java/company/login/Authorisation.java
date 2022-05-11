@@ -75,7 +75,6 @@ public class Authorisation {
 
 
             if (rs.next()){
-
                 return true;
             }
             return false;
