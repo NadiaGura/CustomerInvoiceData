@@ -6,8 +6,8 @@ import company.login.Authorisation;
 public class Main {
     public static void main(String[] args) {
 
-        DBConnection.getConnection();
-
+//        DBConnection.getConnection();
+//
         Authorisation.signUp();
 
 
