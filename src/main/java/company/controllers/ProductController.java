@@ -49,35 +49,10 @@ public class ProductController {
         }
     }
 
-    public static boolean checkIfAdmin() {
-
-        System.out.print("Enter your id: ");
-        int id = scanner.nextInt();
-        try {
-
-            ps = getConnection().prepareStatement("SELECT * FROM users WHERE WHERE id=" + id);
-            rs = ps.executeQuery();
-            String userRole;
-            while (rs.next()) {
-                userRole = rs.getString("role");
-                if (userRole.equals("admin")) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Database error");
-            return false;
-        }
-        return false;
-    }
-
 
     public static boolean addProduct() {
 
-        if (ProductController.checkIfAdmin()) {
+
             System.out.print("Enter the name of the product: ");
             String name = scanner.next();
 
@@ -97,14 +72,11 @@ public class ProductController {
                 System.out.println("Database Error");
                 return false;
             }
-        } else {
-            System.out.println("Your role does not grant you possibility to add products");
         }
-        return false;
-    }
+
 
     public static void deleteProduct() {
-        if (ProductController.checkIfAdmin()) {
+
             System.out.print("Enter the id of the product: ");
             int id = scanner.nextInt();
             try {
@@ -115,14 +87,11 @@ public class ProductController {
                 System.out.println("Database Error");
 
             }
-        } else {
-            System.out.println("Your role does not grant you possibility to delete products");
-        }
     }
 
 
-    public static boolean editProduct() {
-        if (ProductController.checkIfAdmin()) {
+    public static void editProduct() {
+
             System.out.println("Enter the id of the product: ");
             int id = scanner.nextInt();
             System.out.println("Enter new name:");
@@ -133,20 +102,17 @@ public class ProductController {
                 ps = getConnection().prepareStatement("UPDATE products SET name ='" + newName + "' WHERE id =" + id);
                 ps = getConnection().prepareStatement("UPDATE products SET price ='" + newPrice + "' WHERE id =" + id);
                 ps.execute();
-                return true;
+
             } catch (SQLException e) {
                 System.out.println("Database Error");
-                return false;
+
             }
-        } else {
-            System.out.println("Your role does not grant you possibility to edit products");
         }
-        return false;
-    }
+
 
 
     public static void changeQuantity() {
-        if (ProductController.checkIfAdmin()) {
+
             System.out.print("Enter the id of the product: ");
             int quantity = scanner.nextInt();
             try {
@@ -157,13 +123,13 @@ public class ProductController {
                 System.out.println("Database Error");
 
             }
-        } else {
-            System.out.println("Your role does not grant you possibility to change quantity");
         }
-    }
-
-
 
 
 }
+
+
+
+
+
 
