@@ -17,8 +17,8 @@ public class Product {
         this.price = price;
     }
 
-    public int getId() {
-        return id;
+    public int getId(int id) {
+        return this.id;
     }
 
     public void setId(int id) {
@@ -48,4 +48,6 @@ public class Product {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+
 }
