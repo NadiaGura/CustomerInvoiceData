@@ -31,10 +31,10 @@ public class Main {
 //        System.out.println(CustomerController.getCustomerById().getName());
 
 
-        InvoiceController.createInvoice();
+  //      InvoiceController.createInvoice();
 
 //        System.out.println(UsersController.checkIfAdmin() ? "Admin" : "Not admin");
- //       InvoiceLineController.addInvoiceLine();
+        InvoiceLineController.getInvoiceLine();
 
     //    System.out.println(ProductController.getProductById().getName());
 
