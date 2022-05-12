@@ -1,5 +1,6 @@
 package company.controllers;
 
+import company.dbhelper.DBConnection;
 import company.objects.Customer;
 import company.objects.Product;
 
@@ -64,7 +65,7 @@ public class ProductController {
             int quantity = scanner.nextInt();
 
             try {
-                ps = getConnection().prepareStatement("INSERT INTO products (name, price, quantity) VALUES(?, ?, ?)");
+                ps = DBConnection.getConnection().prepareStatement("INSERT INTO products (name, price, quantity) VALUES(?, ?, ?)");
                 ps.setString(1, name);
                 ps.setFloat(2, price);
                 ps.setInt(3, quantity);

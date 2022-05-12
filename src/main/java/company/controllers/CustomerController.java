@@ -1,5 +1,6 @@
 package company.controllers;
 
+import company.dbhelper.DBConnection;
 import company.objects.Customer;
 
 import java.sql.PreparedStatement;
@@ -24,7 +25,7 @@ public class CustomerController {
             String name = sc.next();
 
             try {
-                ps = getConnection().prepareStatement("SELECT * FROM customers WHERE id = " + id);
+                ps = DBConnection.getConnection().prepareStatement("SELECT * FROM customers WHERE id = " + id);
                 rs = ps.executeQuery();
 
 
@@ -51,12 +52,10 @@ public class CustomerController {
 
     public static boolean addCustomer() {
 
-        System.out.print("Enter the name of the costumer: ");
+        System.out.print("Enter the name of the customer: ");
         String name = sc.nextLine();
-
         try {
-            ps = getConnection().prepareStatement("INSERT INTO customer (name) VALUES(?)");
-            ps.setString(1, name);
+            ps = DBConnection.getConnection().prepareStatement("INSERT INTO customers (name) VALUES ('" + name + "')");
             ps.execute();
             return true;
         } catch (SQLException e) {
@@ -71,7 +70,7 @@ public class CustomerController {
         System.out.print("Enter the id of the customer: ");
         int id = sc.nextInt();
         try {
-            ps = getConnection().prepareStatement("DELETE FROM customers WHERE id=" + id);
+            ps = DBConnection.getConnection().prepareStatement("DELETE FROM customers WHERE id=" + id);
             ps.execute();
             return true;
 
@@ -91,7 +90,7 @@ public class CustomerController {
         String newName = sc.nextLine();
 
         try {
-            ps = getConnection().prepareStatement("UPDATE products SET name ='" + newName + "' WHERE id =" + id);
+            ps = DBConnection.getConnection().prepareStatement("UPDATE products SET name ='" + newName + "' WHERE id =" + id);
 
             ps.execute();
             return true;

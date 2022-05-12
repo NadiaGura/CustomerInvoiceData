@@ -20,7 +20,7 @@ public class InvoiceController {
         int customersid = scanner.nextInt();
 
         System.out.print("Enter the date of the invoice: ");
-        String  invoiceDate = scanner.next();
+        String invoiceDate = scanner.next();
 
 
         try {
