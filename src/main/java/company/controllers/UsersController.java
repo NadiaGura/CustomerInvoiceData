@@ -77,13 +77,13 @@ public class UsersController {
         String newRole = scanner.nextLine();
 
         try {
-            ps = getConnection().prepareStatement("INSERT INTO products (username, password, name, surname, role)" +
+            ps = getConnection().prepareStatement("INSERT INTO users (username, password, name, surname, role)" +
                     " VALUES(?, ?, ?, ?, ? )");
             ps.setString(1, newUsername);
             ps.setString(2, newPassword);
             ps.setString(3, newName);
             ps.setString(4, newSurname);
-            ps.setString(4, newRole);
+            ps.setString(5, newRole);
             ps.execute();
             return true;
         } catch (SQLException e) {
@@ -109,25 +109,24 @@ public class UsersController {
         }
     public static boolean editUser() {
 
-        System.out.println("Enter the id of the user: ");
-        int id = scanner.nextInt();
-        System.out.println("Enter new username:");
-        String newUsername = scanner.nextLine();
+        System.out.println("Enter username:");
+        String username = scanner.nextLine();
         System.out.println("Enter new password:");
         String newPassword = scanner.nextLine();
         System.out.println("Enter new name:");
         String newName = scanner.nextLine();
         System.out.println("Enter new surname:");
-        String newSurname = scanner.nextLine();
+       String newSurname = scanner.nextLine();
         System.out.println("Enter new role:");
         String newRole = scanner.nextLine();
         try {
-            ps = getConnection().prepareStatement("UPDATE products SET name ='" + newName + "' WHERE id =" + id);
-            ps = getConnection().prepareStatement("UPDATE products SET username ='" + newUsername + "' WHERE id =" + id);
-            ps = getConnection().prepareStatement("UPDATE products SET password ='" + newPassword + "' WHERE id =" + id);
-            ps = getConnection().prepareStatement("UPDATE products SET name ='" + newSurname + "' WHERE id =" + id);
-            ps = getConnection().prepareStatement("UPDATE products SET surname ='" + newName + "' WHERE id =" + id);
-            ps = getConnection().prepareStatement("UPDATE products SET role ='" + newRole + "' WHERE id =" + id);
+            ps = getConnection().prepareStatement("UPDATE users SET password ='" + newPassword + "' WHERE username ='" + username + "'");
+            ps.execute();
+            ps = getConnection().prepareStatement("UPDATE users SET name ='" + newName + "' WHERE username ='"  + username + "'");
+            ps.execute();
+            ps = getConnection().prepareStatement("UPDATE users SET surname ='" + newSurname + "' WHERE username ='"  + username + "'");
+            ps.execute();
+            ps = getConnection().prepareStatement("UPDATE users SET role ='" + newRole + "' WHERE username ='"  + username + "'");
             ps.execute();
             return true;
         } catch (SQLException e) {
@@ -144,13 +143,14 @@ public class UsersController {
             int id = scanner.nextInt();
             try {
 
-                ps = getConnection().prepareStatement("SELECT * FROM users WHERE WHERE id=" + id);
+                ps = getConnection().prepareStatement("SELECT * FROM users WHERE id=" + id);
                 rs = ps.executeQuery();
                 String userRole;
                 while (rs.next()) {
                     userRole = rs.getString("role");
                     if (userRole.equals("admin")) {
                         return true;
+
                     } else {
                         return false;
                     }

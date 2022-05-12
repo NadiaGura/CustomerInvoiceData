@@ -21,9 +21,6 @@ public class CustomerController {
             System.out.println("Please enter customer ID: ");
             int id = sc.nextInt();
 
-            System.out.println("Enter name of the customer: ");
-            String name = sc.next();
-
             try {
                 ps = DBConnection.getConnection().prepareStatement("SELECT * FROM customers WHERE id = " + id);
                 rs = ps.executeQuery();
@@ -39,8 +36,8 @@ public class CustomerController {
                 while (rs.next()) {
                     custID = rs.getInt("id");
                     custName = rs.getString("name");
-                    customer.setName(name);
-                    customer.setId(id);
+                    customer.setName(custName);
+                    customer.setId(custID);
                 }
                 return customer;
 
@@ -87,10 +84,10 @@ public class CustomerController {
         System.out.println("Enter the id of the customer: ");
         int id = sc.nextInt();
         System.out.println("Enter new name:");
-        String newName = sc.nextLine();
+        String newName = sc.next();
 
         try {
-            ps = DBConnection.getConnection().prepareStatement("UPDATE products SET name ='" + newName + "' WHERE id =" + id);
+            ps = DBConnection.getConnection().prepareStatement("UPDATE customers SET name ='" + newName + "' WHERE id =" + id);
 
             ps.execute();
             return true;

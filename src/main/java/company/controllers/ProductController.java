@@ -101,12 +101,13 @@ public class ProductController {
             System.out.println("Enter the id of the product: ");
             int id = scanner.nextInt();
             System.out.println("Enter new name:");
-            String newName = scanner.nextLine();
+            String newName = scanner.next();
             System.out.println("Enter new price:");
-            int newPrice = scanner.nextInt();
+            float newPrice = scanner.nextFloat();
             try {
                 ps = getConnection().prepareStatement("UPDATE products SET name ='" + newName + "' WHERE id =" + id);
-                ps = getConnection().prepareStatement("UPDATE products SET price ='" + newPrice + "' WHERE id =" + id);
+                ps.execute();
+                ps = getConnection().prepareStatement("UPDATE products SET price =" + newPrice + " WHERE id =" + id);
                 ps.execute();
                 return true;
             } catch (SQLException e) {
