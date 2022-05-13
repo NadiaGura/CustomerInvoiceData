@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="company.Forms.Signup">
+   <children>
+      <Button layoutX="253.0" layoutY="322.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="91.0" text="OK" />
+      <Label layoutX="269.0" layoutY="67.0" prefHeight="17.0" prefWidth="64.0" text="SignUp">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField accessibleText="username" alignment="CENTER" layoutX="220.0" layoutY="112.0" promptText="USERNAME" />
+      <TextField alignment="CENTER" layoutX="220.0" layoutY="155.0" promptText="NAME" />
+      <TextField alignment="CENTER" layoutX="220.0" layoutY="200.0" promptText="SURNAME" />
+      <TextField alignment="CENTER" layoutX="220.0" layoutY="244.0" promptText="ROLE" />
+      <Label layoutX="208.0" layoutY="284.0" text="Press OK to proceed with registration" />
+   </children>
+</AnchorPane>
