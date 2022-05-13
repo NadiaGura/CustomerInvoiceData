@@ -17,7 +17,7 @@ public class Main {
        // Authorisation.signUp();
         //UsersController.deleteUser();
         //ProductController.addProduct();
-        Authorisation.login();
+      //  Authorisation.login();
 
 
        // SalesPersonMenu.menu();
@@ -30,16 +30,16 @@ public class Main {
         // To get customers name by ID
 //        System.out.println(CustomerController.getCustomerById().getName());
 
-
-  //      InvoiceController.createInvoice();
+       InvoiceController.createInvoice();
+      // InvoiceLineController.getInvoiceLine();
 
 //        System.out.println(UsersController.checkIfAdmin() ? "Admin" : "Not admin");
-        InvoiceLineController.getInvoiceLine();
+
 
     //    System.out.println(ProductController.getProductById().getName());
 
 
-       // ProductController.editProduct();
+       //ProductController.deleteProduct();
 
 
 
