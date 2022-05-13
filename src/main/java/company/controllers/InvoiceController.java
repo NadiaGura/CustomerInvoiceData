@@ -88,8 +88,8 @@ public class InvoiceController {
 
                 float price, sum;
                 String name;
-
-                System.out.println("name\t\t\t\t\t\t\t\t\tquantity\t\tprice\t\tsum");
+                System.out.println("Invoice created successfully:");
+                System.out.println("name\t\t\t\t\t\t\tquantity\tprice\tsum");
                 while (rs.next()) {
 
 
@@ -112,6 +112,9 @@ public class InvoiceController {
 
             System.out.println("The date of the invoice is " + invoiceDate);
             System.out.println("The customer id is " + customersid);
+
+
+
 }
 
 
