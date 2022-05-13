@@ -14,7 +14,7 @@ public class UsersController {
     private static ResultSet rs;
 
 
-    public class StudentController {
+ //   public class StudentController {
 
 //        //initialize scanner
 //        private Scanner sc = new Scanner(System.in);
@@ -62,49 +62,39 @@ public class UsersController {
 //
 //
 //
-//        //METHOD TO GET/READ CUSTOMERS BY ID/NAME
-//
-//        public static boolean getCustomerById(){
-//            //ask user for data
-//            System.out.println("Please enter customer ID: ");
-//            int id = sc.nextInt();
-//
-////            System.out.println("Enter name of the customer: ");
-////            String name = sc.next();
-//
-//
-//            //UPDATE WITH CORRECT QUERY FROM DB//
-//            try {
-//                ps = getConnection().prepareStatement("SELECT * FROM customers WHERE id = " + id);
-//                rs = ps.executeQuery();
-//
-//                //define var to temporarily hold each field in the result set.
-//                int id;
-//                String name;
-//
-//                //instantiate the student objet to return at the end of the method execution
-//                Customer customer = new Customer();
-//
-//                //loop through the result set and add the necessary values in customer object
-//                while (rs.next()) {
-//                    id = rs.getInt("id");
-//                    name = rs.getString("name");
-//                    customer.setName(name);
-//                    customer.setId(id);
-//                }
-//                return customer;
-//
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//                return null;
-//            }
-//        }
 
 
-        // Method to delete user for admin
+    public static boolean addUser() {
+        System.out.println("Enter username:");
+        String newUsername = scanner.nextLine();
+        System.out.println("Enter password:");
+        String newPassword = scanner.nextLine();
+        System.out.println("Enter name:");
+        String newName = scanner.nextLine();
+        System.out.println("Enter surname:");
+        String newSurname = scanner.nextLine();
+        System.out.println("Enter role:");
+        String newRole = scanner.nextLine();
 
-        public void deleteUser() {
-            if (ProductController.checkIfAdmin()) {
+        try {
+            ps = getConnection().prepareStatement("INSERT INTO users (username, password, name, surname, role)" +
+                    " VALUES(?, ?, ?, ?, ? )");
+            ps.setString(1, newUsername);
+            ps.setString(2, newPassword);
+            ps.setString(3, newName);
+            ps.setString(4, newSurname);
+            ps.setString(5, newRole);
+            ps.execute();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Database Error");
+            return false;
+        }
+
+    }
+
+    public static boolean deleteUser() {
+
                 System.out.print("Enter the id of the user: ");
                 int id = scanner.nextInt();
                 try {
@@ -115,10 +105,63 @@ public class UsersController {
                     System.out.println("Database Error");
 
                 }
-            } else {
-                System.out.println("Your role does not grant you possibility to delete users");
+            return false;
+        }
+    public static boolean editUser() {
+
+        System.out.println("Enter username:");
+        String username = scanner.nextLine();
+        System.out.println("Enter new password:");
+        String newPassword = scanner.nextLine();
+        System.out.println("Enter new name:");
+        String newName = scanner.nextLine();
+        System.out.println("Enter new surname:");
+       String newSurname = scanner.nextLine();
+        System.out.println("Enter new role:");
+        String newRole = scanner.nextLine();
+        try {
+            ps = getConnection().prepareStatement("UPDATE users SET password ='" + newPassword + "' WHERE username ='" + username + "'");
+            ps.execute();
+            ps = getConnection().prepareStatement("UPDATE users SET name ='" + newName + "' WHERE username ='"  + username + "'");
+            ps.execute();
+            ps = getConnection().prepareStatement("UPDATE users SET surname ='" + newSurname + "' WHERE username ='"  + username + "'");
+            ps.execute();
+            ps = getConnection().prepareStatement("UPDATE users SET role ='" + newRole + "' WHERE username ='"  + username + "'");
+            ps.execute();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Database Error");
+            return false;
+        }
+
+    }
+
+
+    public static boolean checkIfAdmin() {
+
+            System.out.print("Enter your id: ");
+            int id = scanner.nextInt();
+            try {
+
+                ps = getConnection().prepareStatement("SELECT * FROM users WHERE id=" + id);
+                rs = ps.executeQuery();
+                String userRole;
+                while (rs.next()) {
+                    userRole = rs.getString("role");
+                    if (userRole.equals("admin")) {
+                        return true;
+
+                    } else {
+                        return false;
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println("Database error");
+                return false;
             }
+            return false;
         }
 
    }
-}
+

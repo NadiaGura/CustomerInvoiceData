@@ -1,6 +1,9 @@
 package company.login;
 
+import company.controllers.UsersController;
 import company.dbhelper.DBConnection;
+import company.menu.AdminsMenu;
+import company.menu.SalesPersonMenu;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -70,15 +73,26 @@ public class Authorisation {
             ps.setString(1, loginUsername);
             ps.setString(2, loginPassword);
 
-            rs= ps.executeQuery();
+            rs = ps.executeQuery();
 
 
-
-            if (rs.next()){
-
-                return true;
+            if (rs.next()) {
+                String userRole;
+                userRole = rs.getString("role");
+                if (userRole.equals("admin")) {
+                    AdminsMenu.menu();
+                } else if
+                (userRole.equals("sales person")) {
+                    SalesPersonMenu.menu();
+           //     } else {
+           //         System.out.println("Wrong username or password.");
+                }
             }
             return false;
+
+
+
+
 
         } catch (SQLException e) {
             System.out.println("Invalid password or username.");

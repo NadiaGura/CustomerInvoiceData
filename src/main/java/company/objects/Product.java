@@ -5,13 +5,20 @@ public class Product {
     private int id;
     private String name;
     private float price;
+    private int quantity;
 
     public Product() {
 
     }
 
-    public int getId() {
-        return id;
+    public Product(int id, String name, float price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+
+    public int getId(int id) {
+        return this.id;
     }
 
     public void setId(int id) {
@@ -32,6 +39,14 @@ public class Product {
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
 
