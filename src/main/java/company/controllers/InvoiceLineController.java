@@ -2,6 +2,7 @@ package company.controllers;
 
 import company.dbhelper.DBConnection;
 
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -69,7 +70,7 @@ public class InvoiceLineController {
             float price, sum;
             String name;
 
-            System.out.println("name\t\tquantity\t\tprice\t\tsum");
+            System.out.println("name\t\t\t\t\t\t\t\t\t\tquantity\t\tprice\t\tsum");
             while (rs.next()) {
 
 
@@ -90,6 +91,26 @@ public class InvoiceLineController {
 
         }
 
+    }
+
+    public static boolean addInvoiceLine (int invoiceID, int countOfLines) {
+
+
+        System.out.print("Enter the id of the product: ");
+        int id = scanner.nextInt();
+        System.out.print("Enter the quantity of the product: ");
+        int quantity = scanner.nextInt();
+
+        try {
+            ps = DBConnection.getConnection().prepareStatement("INSERT INTO invoicelines (quantity) VALUES(" + quantity + "WHERE id=" + id);
+            ps.execute();
+
+        } catch (SQLException e) {
+            System.out.println("Database Error");
+
+        }
+
+        return false;
     }
 
 

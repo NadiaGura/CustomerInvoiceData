@@ -81,6 +81,8 @@ public class InvoiceController {
             int productid = scanner.nextInt();
             System.out.print("Enter the quantity of the product: ");
             int quantity = scanner.nextInt();
+            int stock;
+            int updateStock = 0;
 
             try {
                 ps = getConnection().prepareStatement("SELECT * FROM products WHERE id=" + productid);
@@ -112,6 +114,28 @@ public class InvoiceController {
 
             System.out.println("The date of the invoice is " + invoiceDate);
             System.out.println("The customer id is " + customersid);
+
+
+            try {
+                ps = getConnection().prepareStatement("SELECT * FROM products WHERE id=" + productid);
+                rs = ps.executeQuery();
+
+                   while (rs.next()) {
+                    stock = rs.getInt("stock");
+                    updateStock = stock-quantity;
+
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                ps = getConnection().prepareStatement("UPDATE products SET stock =" + updateStock + " WHERE id =" + productid);
+                ps.execute();
+
+            } catch (SQLException e) {
+                System.out.println("Database Error");
+            }
 
 
 
