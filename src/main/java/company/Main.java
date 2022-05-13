@@ -17,12 +17,12 @@ public class Main {
        // Authorisation.signUp();
         //UsersController.deleteUser();
         //ProductController.addProduct();
-      //  Authorisation.login();
+        Authorisation.login();
 
 
        // SalesPersonMenu.menu();
 
-//        AdminsMenu.menu();
+       // AdminsMenu.menu();
 
        // ProductController.checkInventory();
 
