@@ -19,7 +19,7 @@ public class InvoiceMenu {
 
         switch (option) {
             case 1:
-                System.out.println(InvoiceController.createInvoice() ? "New invoice successfully created" : "Invoice not created");
+         //       System.out.println(InvoiceController.createInvoice() ? "New invoice successfully created" : "Invoice not created");
                 break;
             case 2:
                 System.out.println(InvoiceController.deleteInvoice() ? "Invoice deleted" : "Invoice not deleted");

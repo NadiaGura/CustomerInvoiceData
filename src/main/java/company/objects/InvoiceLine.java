@@ -1,6 +1,6 @@
 package company.objects;
 
-public class InvoiceLine  {
+//public class InvoiceLine  {
     /*private int id;
     private int quantity;
     private Product product;
