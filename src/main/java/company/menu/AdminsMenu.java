@@ -13,6 +13,7 @@ public class AdminsMenu {
         System.out.println("1. Users.");
         System.out.println("2. Inventory.");
         System.out.println("3. Invoices.");
+        System.out.println("4. Customers.");
 
         System.out.println("Select an option: ");
         int option = scanner.nextInt();
@@ -26,6 +27,9 @@ public class AdminsMenu {
                 break;
             case 3:
                 System.out.println(InvoiceMenu.menu());
+                break;
+            case 4:
+                System.out.println(CustomerMenu.menu());
                 break;
 
             default:
