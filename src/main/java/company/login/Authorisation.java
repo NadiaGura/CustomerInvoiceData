@@ -23,7 +23,7 @@ public class Authorisation {
     //SIGN UP METHOD
     public static boolean signUp() {
 
-        System.out.println("Enter username: ");
+        System.out.print("Enter username: ");
         String username = scanner.nextLine();
 
         System.out.print("Enter password:");
@@ -65,7 +65,7 @@ public class Authorisation {
 
     //LOGIN METHOD
     public static void login() {
-        System.out.println("Enter username: ");
+        System.out.print("Enter username: ");
         String loginUsername = scanner.nextLine();
 
         System.out.print("Enter password:");
