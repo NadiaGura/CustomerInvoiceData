@@ -58,7 +58,7 @@ public class InvoiceController {
         int quantity = scanner.nextInt();
 
         try {
-            ps = getConnection().prepareStatement("INSERT INTO invoices (customersid, date, productsid, quantity) VALUES(?, ?)");
+            ps = getConnection().prepareStatement("INSERT INTO invoices (customersid, date, productsid, quantity) VALUES(?, ?, ?, ?)");
             ps.setInt(1, customersid);
             ps.setString(2, invoiceDate);
             ps.setInt(3, productid);
@@ -111,7 +111,7 @@ public class InvoiceController {
         }
 
 
-       try {
+      /* try {
              ps = getConnection().prepareStatement("SELECT * FROM products WHERE id=" + productid);
              rs = ps.executeQuery();
 
@@ -130,7 +130,7 @@ public class InvoiceController {
                     }
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
 
 
 
