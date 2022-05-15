@@ -22,7 +22,6 @@ public class InventoryMenu {
             case 1:
                 ProductController.checkInventory();
                 break;
-
             case 2:
                 System.out.println(ProductController.addProduct() ? "New product successfully added" : "Product not added");
                 break;

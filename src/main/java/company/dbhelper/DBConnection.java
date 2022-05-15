@@ -14,7 +14,6 @@ public class DBConnection {
         } catch (SQLException e) {
             System.out.println("There was a problem connection to the DB.");
             e.printStackTrace();
-            //System.out.println("There was a problem connection to the DB.");
         }
         return connection;
     }

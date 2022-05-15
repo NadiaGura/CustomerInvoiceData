@@ -2,14 +2,9 @@ package company.controllers;
 
 import company.dbhelper.DBConnection;
 import company.objects.Customer;
-import company.objects.Invoice;
-
-import java.sql.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 import static company.dbhelper.DBConnection.getConnection;
@@ -97,47 +92,6 @@ public class CustomerController {
             return false;
         }
 
-    }
-
-    public static ArrayList<Invoice> getInvoicesByCustomerId() {
-
-
-        System.out.println("Enter the id of the customer: ");
-        int customersid = sc.nextInt();
-
-
-        ArrayList<Invoice> invoicesList = null;
-        try {
-            ps = DBConnection.getConnection().prepareStatement("SELECT * FROM invoices WHERE customersid = " + customersid);
-            rs = ps.executeQuery();
-
-            System.out.println("id\t\tcustomersid\t\tdate");
-
-
-            //invoicesList = new ArrayList<>();
-
-            while (rs.next()) {
-
-                int id = rs.getInt("id");
-                String invoiceDate = rs.getString("date");
-
-
-
-                //Invoice invoice = new Invoice(rs.getInt("id"), rs.getInt("customersid"), rs.getString("date"));
-                //invoicesList.add(invoice);
-
-
-                System.out.println((id + "\t\t" + customersid + "\t\t" + invoiceDate));
-            }
-
-            //return invoicesList;
-
-        } catch (SQLException e) {
-
-            System.out.println("get all invoices");
-            e.printStackTrace();
-
-        } return null;
     }
 
 }

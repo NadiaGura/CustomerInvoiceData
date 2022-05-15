@@ -12,7 +12,7 @@ public class WelcomeMenu {
         System.out.println("2. Sign up.");
 
         System.out.println("Select an option: ");
-       int option = scanner.nextInt();
+        int option = scanner.nextInt();
 
         switch (option) {
             case 1:

@@ -12,6 +12,7 @@ public class InvoiceMenu {
         System.out.println("1. Create new invoice");
         System.out.println("2. Delete invoice");
         System.out.println("3. Edit invoice");
+        System.out.println("4. List invoices for customer");
 
 
         System.out.println("Select an option: ");
@@ -26,6 +27,9 @@ public class InvoiceMenu {
                 break;
             case 3:
                 System.out.println(InvoiceController.editInvoice() ? "Invoice's data edited" : "Data not edited");
+                break;
+            case 4:
+                InvoiceController.checkInvoices();
                 break;
 
             default:

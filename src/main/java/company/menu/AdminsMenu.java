@@ -1,8 +1,5 @@
 package company.menu;
 
-import company.controllers.InvoiceController;
-import company.objects.Users;
-
 import java.util.Scanner;
 
 public class AdminsMenu {

@@ -1,8 +1,6 @@
 package company.menu;
 
 import company.controllers.CustomerController;
-
-
 import java.util.Scanner;
 
 public class CustomerMenu {

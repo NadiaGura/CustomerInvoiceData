@@ -1,13 +1,10 @@
 package company.controllers;
 
 import company.dbhelper.DBConnection;
-import company.objects.Customer;
 import company.objects.Product;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import static company.dbhelper.DBConnection.getConnection;
@@ -54,7 +51,6 @@ public class ProductController {
 
     public static boolean addProduct() {
 
-
             System.out.print("Enter the name of the product: ");
             String name = scanner.nextLine();
 
@@ -75,7 +71,6 @@ public class ProductController {
                 System.out.println("Database Error");
                 return false;
             }
-
     }
 
     public static boolean deleteProduct() {
@@ -92,7 +87,6 @@ public class ProductController {
                 return false;
 
             }
-
     }
 
 
@@ -126,10 +120,8 @@ public class ProductController {
             System.out.println("Enter new quantity:");
             int newQuantity = scanner.nextInt();
 
-
-
             try {
-                ps = getConnection().prepareStatement("UPDATE products SET quantity = '" + newQuantity + "' WHERE id=" + id);
+                ps = getConnection().prepareStatement("UPDATE products SET stock = '" + newQuantity + "' WHERE id=" + id);
                 ps.execute();
 
             } catch (SQLException e) {
@@ -139,61 +131,27 @@ public class ProductController {
 
     }
 
-//    public static void checkInventory() {
-//
-//
-//        try { ps = getConnection().prepareStatement("SELECT * FROM products");
-//            ps.executeQuery();
-//            while (rs.next()) {
-//
-//                int id = rs.getInt("id");
-//                String name = rs.getString("name");
-//                float price = rs.getFloat("price");
-//                int quantity = rs.getInt("quantity");
-//
-//                Product obj = new Product();
-//                obj.setId(id);
-//                obj.setName(name);
-//                obj.setPrice(price);
-//                obj.setQuantity(quantity);
-//
-//
-//                System.out.println(obj);
-//            }
-//
-//        } catch (SQLException e) {
-//            System.out.println("Database Error");
-//
-//        }
-//
-//
-//    }
-
-
-
     public static void checkInventory(){
 
         try {
             ps = getConnection().prepareStatement("SELECT * FROM products");
             rs = ps.executeQuery();
 
-
             int id, quantity;
             String name;
             float price;
-            System.out.println("id\t\tname\t\tprice\t\tquantity");
+            System.out.println("id\t\tname\t\t\t\t\t\t\t\tprice\t\tstock");
             while (rs.next()) {
 
                 id = rs.getInt("id");
                 name = rs.getString("name");
                 price = rs.getFloat("price");
-                quantity = rs.getInt("quantity");
+                quantity = rs.getInt("stock");
 
                 System.out.println(id + "\t\t" + name
                         + "\t\t" + price + "\t\t" + quantity );
 
             }
-
 
 
         } catch (SQLException e) {
@@ -202,8 +160,6 @@ public class ProductController {
         }
 
     }
-
-
 
 
 
