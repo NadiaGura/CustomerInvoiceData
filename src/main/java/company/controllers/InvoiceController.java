@@ -44,19 +44,6 @@ public class InvoiceController {
         }*/
 
     public static void createInvoice () {
-//            Invoice inv = new Invoice();
-//            try {
-//                ps = getConnection().prepareStatement("INSERT INTO invoices (id, name, date) values (?, ?, ?");
-//                ps.setInt(1, inv.getId());
-//                ps.setString(2, inv.getCustomer());
-//                ps.setDate(3, inv.getDate());
-//                ps.execute();
-//
-//            } catch (SQLException e) {
-//              //  throw new RuntimeException(e);
-//            }
-//        }
-
 
         System.out.print("Enter the customers id: ");
         int customersid = scanner.nextInt();
@@ -71,9 +58,11 @@ public class InvoiceController {
         int quantity = scanner.nextInt();
 
         try {
-            ps = getConnection().prepareStatement("INSERT INTO invoices (customersid, date) VALUES(?, ?)");
+            ps = getConnection().prepareStatement("INSERT INTO invoices (customersid, date, productsid, quantity) VALUES(?, ?)");
             ps.setInt(1, customersid);
             ps.setString(2, invoiceDate);
+            ps.setInt(3, productid);
+            ps.setInt(4, quantity);
             rs = ps.executeQuery();
 
         } catch (SQLException e) {
@@ -85,7 +74,7 @@ public class InvoiceController {
         int updateStock = 0;
 
         String name = null;
-        try {
+    /*    try {
             ps = getConnection().prepareStatement("SELECT * FROM customers WHERE id=" + customersid);
             rs = ps.executeQuery();
 
@@ -95,7 +84,7 @@ public class InvoiceController {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
 
 
         try {
@@ -122,7 +111,7 @@ public class InvoiceController {
         }
 
 
-        try {
+       try {
              ps = getConnection().prepareStatement("SELECT * FROM products WHERE id=" + productid);
              rs = ps.executeQuery();
 
@@ -131,17 +120,18 @@ public class InvoiceController {
              updateStock = stock-quantity;
 
              }
-        } catch (SQLException e) {
-                e.printStackTrace();
-        }
 
-        try {
+                  try {
                 ps = getConnection().prepareStatement("UPDATE products SET stock =" + updateStock + " WHERE id =" + productid);
                 ps.execute();
 
-        } catch (SQLException e) {
+                          } catch (SQLException e) {
                 System.out.println("Database Error");
+                    }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
 
 
     }
