@@ -36,7 +36,6 @@ public class InvoiceMenu {
                 System.out.println("Invalid option. Try again.");
                 menu();
         }
-
         return false;
     }
 }

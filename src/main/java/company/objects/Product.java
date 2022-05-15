@@ -6,10 +6,12 @@ public class Product {
     private String name;
     private float price;
 
+    //CONSTRUCTOR
     public Product() {
 
     }
 
+    //GETTERS AND SETTERS
     public void setId(int id) {
         this.id = id;
     }
@@ -21,7 +23,4 @@ public class Product {
     public void setPrice(float price) {
         this.price = price;
     }
-
-
-
 }

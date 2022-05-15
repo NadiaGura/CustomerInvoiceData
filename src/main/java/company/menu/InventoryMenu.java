@@ -38,7 +38,6 @@ public class InventoryMenu {
                 System.out.println("Invalid option. Try again.");
                 menu();
         }
-
         return false;
     }
 }

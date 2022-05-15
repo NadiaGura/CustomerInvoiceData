@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="company.Forms.CreateInvoice">
+   <children>
+      <Label layoutX="270.0" layoutY="52.0" text="NEW INVOICE" />
+      <TextField layoutX="226.0" layoutY="102.0" prefHeight="25.0" prefWidth="176.0" promptText="PLEASE ENTER CLIENT ID" />
+      <SplitMenuButton layoutX="230.0" layoutY="143.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="176.0" text="SplitMenuButton">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Action 2" />
+        </items>
+      </SplitMenuButton>
+   </children>
+</AnchorPane>

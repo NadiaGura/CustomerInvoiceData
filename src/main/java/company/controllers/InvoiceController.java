@@ -9,11 +9,13 @@ import static company.dbhelper.DBConnection.getConnection;
 
 public class InvoiceController {
 
+    //SCANNER
     private static Scanner scanner = new Scanner(System.in);
     private static PreparedStatement ps;
     private static ResultSet rs;
 
-    public static void createInvoice () {
+    //CREATE INVOICE METHOD
+    public static void createInvoice() {
 
         System.out.print("Enter the customers id: ");
         int customersid = scanner.nextInt();
@@ -37,9 +39,9 @@ public class InvoiceController {
 
             while (rs.next()) {
                 stock = rs.getInt("stock");
-                updateStock = stock-quantity;
+                updateStock = stock - quantity;
                 price = rs.getInt("price");
-                sum = price*quantity;
+                sum = price * quantity;
             }
 
             try {
@@ -66,11 +68,9 @@ public class InvoiceController {
         } catch (SQLException e) {
 
         }
-
     }
 
-
-
+    //DELETE INVOICE METHOD
     public static boolean deleteInvoice() {
 
         System.out.print("Enter the id of the invoice: ");
@@ -85,7 +85,7 @@ public class InvoiceController {
         }
     }
 
-
+    //EDIT INVOICE METHOD
     public static boolean editInvoice() {
 
         System.out.println("Enter the id of the invoice: ");
@@ -104,7 +104,8 @@ public class InvoiceController {
         }
     }
 
-    public static void checkInvoices(){
+    //READ INVOICE METHOD
+    public static void checkInvoices() {
 
         System.out.print("Enter the id of the customer: ");
         int id = scanner.nextInt();
@@ -122,20 +123,16 @@ public class InvoiceController {
                 idInvoice = rs.getInt("id");
                 id = rs.getInt("customersid");
                 date = rs.getString("date");
-                idProduct= rs.getInt("productsid");
+                idProduct = rs.getInt("productsid");
                 quantity = rs.getInt("quantity");
                 sum = rs.getFloat("sum");
 
-                System.out.println(idInvoice + "\t\t" + id+ "\t\t\t\t" + date
+                System.out.println(idInvoice + "\t\t" + id + "\t\t\t\t" + date
                         + "\t\t\t" + idProduct + "\t\t\t" + quantity + "\t\t" + sum);
-
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
-
-
 }

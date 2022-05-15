@@ -1,6 +1,7 @@
 package company.menu;
 
 import company.controllers.CustomerController;
+
 import java.util.Scanner;
 
 public class CustomerMenu {
@@ -30,7 +31,6 @@ public class CustomerMenu {
                 System.out.println("Invalid option. Try again.");
                 menu();
         }
-
         return false;
     }
 }

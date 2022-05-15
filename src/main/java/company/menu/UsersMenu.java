@@ -30,7 +30,6 @@ public class UsersMenu {
                 System.out.println("Invalid option. Try again.");
                 menu();
         }
-
         return false;
     }
 }

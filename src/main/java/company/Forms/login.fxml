@@ -12,7 +12,7 @@
          </font>
       </Label>
       <TextField alignment="CENTER" layoutX="211.0" layoutY="132.0" promptText="USERNAME" />
-      <TextField alignment="CENTER" layoutX="211.0" layoutY="200.0" promptText="LOGIN" />
+      <TextField alignment="CENTER" layoutX="211.0" layoutY="175.0" promptText="LOGIN" />
       <Button layoutX="264.0" layoutY="280.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="43.0" text="OK" />
       <Label layoutX="192.0" layoutY="251.0" prefHeight="17.0" prefWidth="199.0" text="Press OK to LogIn into your account" />
    </children>

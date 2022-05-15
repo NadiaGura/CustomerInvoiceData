@@ -1,6 +1,6 @@
 package company.login;
 
-
+import company.controllers.UsersController;
 import company.dbhelper.DBConnection;
 import company.menu.AdminsMenu;
 import company.menu.SalesPersonMenu;
@@ -10,15 +10,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import static company.dbhelper.DBConnection.getConnection;
-
 public class Authorisation {
+
+    //SCANNER
     private static Scanner scanner = new Scanner(System.in);
 
     private static PreparedStatement ps;
     private static ResultSet rs;
 
-
+    //SIGN UP METHOD
     public static boolean signUp() {
 
         System.out.println("Enter username: ");
@@ -39,14 +39,14 @@ public class Authorisation {
         if (role.equalsIgnoreCase("sales person") || role.equalsIgnoreCase("admin")) {
             try {
                 //ps = DBConnection.getConnection().prepareStatement("INSERT INTO users(username, password, name, surname, role) VALUES('" + username + "', '" + password + "', '" + name + "', '" + surname + "', '" + role + "')");
-                ps = getConnection().prepareStatement("INSERT INTO users(username, password, name, surname, role) VALUES(?, ?, ?, ?, ?)");
+                ps = DBConnection.getConnection().prepareStatement("INSERT INTO users(username, password, name, surname, role) VALUES(?, ?, ?, ?, ?)");
                 ps.setString(1, username);
                 ps.setString(2, password);
                 ps.setString(3, name);
                 ps.setString(4, surname);
                 ps.setString(5, role);
                 ps.execute();
-                Authorisation.login();
+                return true;
 
             } catch (SQLException e) {
                 System.out.println("Username is probably already used. Choose another one.");
@@ -58,51 +58,46 @@ public class Authorisation {
             System.out.println("The " + role + " is invalid. Accepted values are shown in prompt.");
             return false;
         }
-
-        return false;
     }
 
-
+    //LOGIN METHOD
     public static boolean login() {
         System.out.println("Enter username: ");
         String loginUsername = scanner.nextLine();
 
-        System.out.println("Enter password:");
+        System.out.print("Enter password:");
         String loginPassword = scanner.nextLine();
+
+
         try {
-            ps = getConnection().prepareStatement("SELECT * FROM users WHERE username='" + loginUsername + "'");
+            //   ps = getConnection().prepareStatement("SELECT * FROM users WHERE username = '" + loginUsername + "' and password = '" + loginPassword + "'");
+            ps = DBConnection.getConnection().prepareStatement("SELECT * FROM users WHERE username = ?  and password = ?");
+            ps.setString(1, loginUsername);
+            ps.setString(2, loginPassword);
+
             rs = ps.executeQuery();
-            String userName, userPass,userRole;
-            while (rs.next()) {
-                userName = rs.getString("username");
-                userPass = rs.getString("password");
+
+
+            if (rs.next()) {
+                String userRole;
                 userRole = rs.getString("role");
-                if (userName.equals(loginUsername) && userPass.equals(loginPassword)) {
-                    System.out.println("Login successful");
-
-                        if (userRole.equals("admin")) {
-                            AdminsMenu.menu();
-                        } else if
-                        (userRole.equals("sales person")) {
-                            SalesPersonMenu.menu();
-                            }
-
-                } else {
-                    System.out.println("Username or password is not correct");
-                    return false;
+                if (userRole.equals("admin")) {
+                    AdminsMenu.menu();
+                } else if
+                (userRole.equals("sales person")) {
+                    SalesPersonMenu.menu();
+                    //     } else {
+                    //         System.out.println("Wrong username or password.");
                 }
             }
+            return false;
+
         } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Database error");
+            System.out.println("Invalid password or username.");
+            System.out.println(e.getMessage());
             return false;
         }
-        return false;
     }
-
-
-
-
 }
 
 
