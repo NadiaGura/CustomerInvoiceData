@@ -11,14 +11,15 @@ public class WelcomeMenu {
         System.out.println("1. Log in.");
         System.out.println("2. Sign up.");
 
-        int option = scanner.nextInt();
+        System.out.println("Select an option: ");
+       int option = scanner.nextInt();
 
         switch (option) {
             case 1:
-                System.out.println(Authorisation.login());
+                Authorisation.login();
                 break;
             case 2:
-                System.out.println(Authorisation.signUp());
+                Authorisation.signUp();
                 break;
 
             default:

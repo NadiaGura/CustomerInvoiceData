@@ -17,7 +17,7 @@ public class Authorisation {
     private static ResultSet rs;
 
 
-    public static boolean signUp() {
+    public static void signUp() {
 
         System.out.println("Enter username: ");
         String username = scanner.nextLine();
@@ -44,21 +44,21 @@ public class Authorisation {
                 ps.setString(4, surname);
                 ps.setString(5, role);
                 ps.execute();
-                return true;
+
 
             } catch (SQLException e) {
                 System.out.println("Username is probably already used. Choose another one.");
                 System.out.println(e.getMessage());
-                return false;
+
             }
 
         }else {
             System.out.println("The " + role + " is invalid. Accepted values are shown in prompt.");
-            return false;
+
         }
 
     }
-    public static boolean login(){
+    public static void login(){
         System.out.println("Enter username: ");
         String loginUsername = scanner.nextLine();
 
@@ -66,38 +66,37 @@ public class Authorisation {
         String loginPassword = scanner.nextLine();
 
 
-
         try {
-            //   ps = getConnection().prepareStatement("SELECT * FROM users WHERE username = '" + loginUsername + "' and password = '" + loginPassword + "'");
+
             ps = DBConnection.getConnection().prepareStatement("SELECT * FROM users WHERE username = ?  and password = ?");
             ps.setString(1, loginUsername);
             ps.setString(2, loginPassword);
 
             rs = ps.executeQuery();
 
+            String userName, userPass, userRole;
 
-            if (rs.next()) {
-                String userRole;
+            while (rs.next()) {
+
+                userName = rs.getString("username");
+                userPass = rs.getString("password");
                 userRole = rs.getString("role");
-                if (userRole.equals("admin")) {
+                if (userName.equals(loginUsername) && userPass.equals(loginPassword) && userRole.equals("admin")) {
+                    System.out.println("Login successful");
                     AdminsMenu.menu();
-                } else if
-                (userRole.equals("sales person")) {
+
+                } else if ((userName.equals(loginUsername) && userPass.equals(loginPassword) && userRole.equals("sales person"))) {
+                    System.out.println("Login successful");
                     SalesPersonMenu.menu();
-           //     } else {
-           //         System.out.println("Wrong username or password.");
+                }else {
+                    System.out.println("Login not successful!");
                 }
             }
-            return false;
-
-
-
 
 
         } catch (SQLException e) {
             System.out.println("Invalid password or username.");
             System.out.println(e.getMessage());
-            return false;
 
         }
 

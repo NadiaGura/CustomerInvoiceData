@@ -3,6 +3,7 @@ package company.menu;
 import company.controllers.UsersController;
 import company.objects.Users;
 
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class UsersMenu {
@@ -18,7 +19,7 @@ public class UsersMenu {
 
         switch (option) {
             case 1:
-                System.out.println(UsersController.addUser() ? "New user successfully added" : "User not added");
+                UsersController.addUser(); //? "New user successfully added" : "User not added");
                 break;
             case 2:
                 System.out.println(UsersController.deleteUser() ? "User deleted" : "User not deleted");

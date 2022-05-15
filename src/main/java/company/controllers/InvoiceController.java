@@ -86,7 +86,7 @@ public class InvoiceController {
             e.printStackTrace();
         }*/
 
-
+/*
 //        try {
 //            ps = getConnection().prepareStatement("SELECT * FROM products WHERE id=" + productid);
 //            rs = ps.executeQuery();
@@ -111,7 +111,7 @@ public class InvoiceController {
 //        }
 
 
-      /* try {
+       try {
              ps = getConnection().prepareStatement("SELECT * FROM products WHERE id=" + productid);
              rs = ps.executeQuery();
 
@@ -130,7 +130,7 @@ public class InvoiceController {
                     }
         } catch (SQLException e) {
             e.printStackTrace();
-        }*/
+        }
 
 
 
@@ -177,7 +177,7 @@ public class InvoiceController {
                     }
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
 
 
 
