@@ -29,13 +29,10 @@ public class CustomerController {
                 ps = DBConnection.getConnection().prepareStatement("SELECT * FROM customers WHERE id = " + id);
                 rs = ps.executeQuery();
 
-
                 int custID;
                 String custName;
 
-
                 Customer customer = new Customer();
-
 
                 while (rs.next()) {
                     custID = rs.getInt("id");

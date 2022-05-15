@@ -204,41 +204,7 @@ public class ProductController {
     }
 
 
-    public static void checkInvoices(){
 
-        System.out.print("Enter the id of the customer: ");
-        int id = scanner.nextInt();
-
-        try {
-            ps = getConnection().prepareStatement("SELECT * FROM invoices WHERE customersid =" + id);
-            rs = ps.executeQuery();
-
-            int idInvoice, idProduct, quantity;
-            String date;
-            float sum;
-            System.out.println("id\t\tcustomersid\t\tdate\t\tproductsid\t\tquantity\t\tsum");
-            while (rs.next()) {
-
-                idInvoice = rs.getInt("id");
-                id = rs.getInt("customersid");
-                date = rs.getString("date");
-                idProduct= rs.getInt("productsid");
-                quantity = rs.getInt("quantity");
-                sum = rs.getFloat("sum");
-
-                System.out.println(idInvoice + "\t\t" + id+ "\t\t" + date
-                        + "\t\t" + idProduct + "\t\t" + quantity + "\t\t" + sum);
-
-            }
-
-
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-
-        }
-
-    }
 
 
 }
