@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import static company.dbhelper.DBConnection.getConnection;
+
 public class Authorisation {
 
     //SCANNER
@@ -39,7 +41,7 @@ public class Authorisation {
         if (role.equalsIgnoreCase("sales person") || role.equalsIgnoreCase("admin")) {
             try {
                 //ps = DBConnection.getConnection().prepareStatement("INSERT INTO users(username, password, name, surname, role) VALUES('" + username + "', '" + password + "', '" + name + "', '" + surname + "', '" + role + "')");
-                ps = DBConnection.getConnection().prepareStatement("INSERT INTO users(username, password, name, surname, role) VALUES(?, ?, ?, ?, ?)");
+                ps = getConnection().prepareStatement("INSERT INTO users(username, password, name, surname, role) VALUES(?, ?, ?, ?, ?)");
                 ps.setString(1, username);
                 ps.setString(2, password);
                 ps.setString(3, name);
@@ -58,46 +60,48 @@ public class Authorisation {
             System.out.println("The " + role + " is invalid. Accepted values are shown in prompt.");
             return false;
         }
+
     }
 
     //LOGIN METHOD
-    public static boolean login() {
+    public static void login() {
         System.out.println("Enter username: ");
         String loginUsername = scanner.nextLine();
 
         System.out.print("Enter password:");
         String loginPassword = scanner.nextLine();
-
-
         try {
-            //   ps = getConnection().prepareStatement("SELECT * FROM users WHERE username = '" + loginUsername + "' and password = '" + loginPassword + "'");
-            ps = DBConnection.getConnection().prepareStatement("SELECT * FROM users WHERE username = ?  and password = ?");
-            ps.setString(1, loginUsername);
-            ps.setString(2, loginPassword);
-
+            ps = getConnection().prepareStatement("SELECT * FROM users WHERE username='" + loginUsername + "'");
             rs = ps.executeQuery();
-
-
-            if (rs.next()) {
-                String userRole;
+            String userName, userPass, userRole;
+            while (rs.next()) {
+                userName = rs.getString("username");
+                userPass = rs.getString("password");
                 userRole = rs.getString("role");
-                if (userRole.equals("admin")) {
-                    AdminsMenu.menu();
-                } else if
-                (userRole.equals("sales person")) {
-                    SalesPersonMenu.menu();
-                    //     } else {
-                    //         System.out.println("Wrong username or password.");
+                if (userName.equals(loginUsername) && userPass.equals(loginPassword)) {
+                    System.out.println("Login successful");
+                    if (userRole.equals("admin")) {
+                        AdminsMenu.menu();
+                    } else if
+                    (userRole.equals("sales person")) {
+                        SalesPersonMenu.menu();
+                    }
+
+                } else {
+                    System.out.println("Username or password is not correct");
+
                 }
             }
-            return false;
-
         } catch (SQLException e) {
-            System.out.println("Invalid password or username.");
-            System.out.println(e.getMessage());
-            return false;
+            e.printStackTrace();
+            System.out.println("Database error");
+
         }
+
     }
+
+
+
 }
 
 
