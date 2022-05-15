@@ -48,8 +48,7 @@ public class Authorisation {
                 ps.setString(4, surname);
                 ps.setString(5, role);
                 ps.execute();
-                return true;
-
+                Authorisation.login();
             } catch (SQLException e) {
                 System.out.println("Username is probably already used. Choose another one.");
                 System.out.println(e.getMessage());
@@ -61,6 +60,7 @@ public class Authorisation {
             return false;
         }
 
+        return false;
     }
 
     //LOGIN METHOD
