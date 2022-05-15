@@ -72,8 +72,8 @@ public class InvoiceController {
 
         int stock;
         int updateStock = 0;
-
-        String name = null;
+//
+//        String name = null;
     /*    try {
             ps = getConnection().prepareStatement("SELECT * FROM customers WHERE id=" + customersid);
             rs = ps.executeQuery();
@@ -87,28 +87,28 @@ public class InvoiceController {
         }*/
 
 
-        try {
-            ps = getConnection().prepareStatement("SELECT * FROM products WHERE id=" + productid);
-            rs = ps.executeQuery();
-
-            float price, sum;
-            String nameOfProduct;
-
-            while (rs.next()) {
-            nameOfProduct = rs.getString("name");
-            price = rs.getFloat ("price");
-            sum = price*quantity;
-                System.out.println("");
-                System.out.println("Invoice created successfully:");
-                System.out.println("The date of the invoice is " + invoiceDate);
-                System.out.println("The customer name is " + name);
-                System.out.println("name\t\t\t\t\t\t\tquantity\tprice\tsum");
-                System.out.println(nameOfProduct + "\t\t" + quantity +"\t\t" + price + "\t\t" + sum);
-            }
-
-        } catch (SQLException e) {
-                    e.printStackTrace();
-        }
+//        try {
+//            ps = getConnection().prepareStatement("SELECT * FROM products WHERE id=" + productid);
+//            rs = ps.executeQuery();
+//
+//            float price, sum;
+//            String nameOfProduct;
+//
+//            while (rs.next()) {
+//            nameOfProduct = rs.getString("name");
+//            price = rs.getFloat ("price");
+//            sum = price*quantity;
+//                System.out.println("");
+//                System.out.println("Invoice created successfully:");
+//                System.out.println("The date of the invoice is " + invoiceDate);
+//                System.out.println("The customer name is " + name);
+//                System.out.println("name\t\t\t\t\t\t\tquantity\tprice\tsum");
+//                System.out.println(nameOfProduct + "\t\t" + quantity +"\t\t" + price + "\t\t" + sum);
+//            }
+//
+//        } catch (SQLException e) {
+//                    e.printStackTrace();
+//        }
 
 
       /* try {
@@ -131,6 +131,53 @@ public class InvoiceController {
         } catch (SQLException e) {
             e.printStackTrace();
         }*/
+
+
+
+//        try {
+//            ps = getConnection().prepareStatement("SELECT * FROM products WHERE id=" + productid);
+//            rs = ps.executeQuery();
+//
+//            float price, sum;
+//            String nameOfProduct;
+//
+//            while (rs.next()) {
+//            nameOfProduct = rs.getString("name");
+//            price = rs.getFloat ("price");
+//            sum = price*quantity;
+//                System.out.println("");
+//                System.out.println("Invoice created successfully:");
+//                System.out.println("The date of the invoice is " + invoiceDate);
+//                System.out.println("The customer name is " + name);
+//                System.out.println("name\t\t\t\t\t\t\tquantity\tprice\tsum");
+//                System.out.println(nameOfProduct + "\t\t" + quantity +"\t\t" + price + "\t\t" + sum);
+//            }
+//
+//        } catch (SQLException e) {
+//                    e.printStackTrace();
+//        }
+//
+//
+       try {
+             ps = getConnection().prepareStatement("SELECT * FROM products WHERE id=" + productid);
+             rs = ps.executeQuery();
+
+             while (rs.next()) {
+             stock = rs.getInt("stock");
+             updateStock = stock-quantity;
+
+             }
+
+                  try {
+                ps = getConnection().prepareStatement("UPDATE products SET stock =" + updateStock + " WHERE id =" + productid);
+                ps.execute();
+
+                          } catch (SQLException e) {
+                System.out.println("Database Error");
+                    }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
 
 
@@ -214,5 +261,43 @@ public class InvoiceController {
         }
 
     }
+
+    public static void checkInvoices(){
+
+        System.out.print("Enter the id of the customer: ");
+        int id = scanner.nextInt();
+
+        try {
+            ps = getConnection().prepareStatement("SELECT * FROM invoices WHERE customersid =" + id);
+            rs = ps.executeQuery();
+
+            int idInvoice, idProduct, quantity;
+            String date;
+            float sum;
+            System.out.println("id\t\tcustomersid\t\tdate\t\tproductsid\t\tquantity\t\tsum");
+            while (rs.next()) {
+
+                idInvoice = rs.getInt("id");
+                id = rs.getInt("customersid");
+                date = rs.getString("date");
+                idProduct= rs.getInt("productsid");
+                quantity = rs.getInt("quantity");
+                sum = rs.getFloat("sum");
+
+                System.out.println(idInvoice + "\t\t" + id+ "\t\t\t\t" + date
+                        + "\t\t\t\t" + idProduct + "\t\t\t" + quantity + "\t\t\t" + sum);
+
+            }
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+
+    }
+
+
 
 }
