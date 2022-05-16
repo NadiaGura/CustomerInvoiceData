@@ -1,13 +1,10 @@
 package company.menu;
 
-import company.controllers.InvoiceController;
-import company.objects.Users;
-
 import java.util.Scanner;
 
 public class AdminsMenu {
 
-    public static void menu (){
+    public static void menu() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Hi, admin! Choose one: ");
         System.out.println("1. Users.");
@@ -18,7 +15,7 @@ public class AdminsMenu {
         System.out.println("Select an option: ");
         int option = scanner.nextInt();
 
-        switch(option) {
+        switch (option) {
             case 1:
                 System.out.println(UsersMenu.menu());
                 break;
@@ -36,7 +33,5 @@ public class AdminsMenu {
                 System.out.println("Invalid option. Try again.");
                 menu();
         }
-
-
     }
 }

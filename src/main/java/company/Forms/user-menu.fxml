@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="company.Forms.UserMenu">
+   <children>
+      <Label layoutX="248.0" layoutY="66.0" prefHeight="17.0" prefWidth="116.0" text="WELCOME USER" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="206.0" layoutY="110.0" prefHeight="17.0" prefWidth="189.0" text="What would you like to do?" textAlignment="CENTER" />
+      <Button layoutX="149.0" layoutY="169.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="109.0" text="Customer Data" />
+      <Button layoutX="149.0" layoutY="246.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="109.0" text="Inventory " />
+      <Button layoutX="348.0" layoutY="169.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="109.0" text="Invoices" />
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="348.0" layoutY="246.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="109.0" text="Create New Invoice" textAlignment="CENTER" wrapText="true" />
+      <Label layoutX="270.0" layoutY="34.0" text="USER MENU" />
+   </children>
+</AnchorPane>

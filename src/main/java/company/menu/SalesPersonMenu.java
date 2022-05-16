@@ -5,7 +5,7 @@ import company.controllers.ProductController;
 import java.util.Scanner;
 
 public class SalesPersonMenu {
-    public static void menu (){
+    public static void menu() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Hi, user! Choose one: ");
         System.out.println("1. Check inventory.");
@@ -15,7 +15,7 @@ public class SalesPersonMenu {
         System.out.println("Select an option: ");
         int option = scanner.nextInt();
 
-        switch(option) {
+        switch (option) {
 
             case 1:
                 ProductController.checkInventory();
@@ -30,7 +30,5 @@ public class SalesPersonMenu {
                 System.out.println("Invalid option. Try again.");
                 menu();
         }
-
-
     }
 }

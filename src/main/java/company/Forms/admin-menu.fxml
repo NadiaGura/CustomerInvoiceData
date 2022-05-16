@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="company.Forms.AdminMenu">
+   <children>
+      <Label layoutX="270.0" layoutY="57.0" text="ADMIN MENU" />
+      <Button layoutX="141.0" layoutY="140.0" mnemonicParsing="false" text="Customer Data" />
+      <Button layoutX="141.0" layoutY="200.0" mnemonicParsing="false" text="Inventory" />
+      <Button layoutX="357.0" layoutY="200.0" mnemonicParsing="false" text="Roles" />
+      <Button layoutX="350.0" layoutY="140.0" mnemonicParsing="false" text="Invoices" />
+   </children>
+</AnchorPane>
