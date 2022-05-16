@@ -95,7 +95,7 @@ public class InvoiceController {
         String newDate = scanner.next();
 
         try {
-            ps = getConnection().prepareStatement("UPDATE products SET price ='" + newDate + "' WHERE id =" + id);
+            ps = getConnection().prepareStatement("UPDATE invoices SET date ='" + newDate + "' WHERE id =" + id);
             ps.execute();
             return true;
         } catch (SQLException e) {
