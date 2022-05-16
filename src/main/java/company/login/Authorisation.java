@@ -48,6 +48,8 @@ public class Authorisation {
                 ps.setString(4, surname);
                 ps.setString(5, role);
                 ps.execute();
+
+                System.out.println("Please, login:");
                 Authorisation.login();
             } catch (SQLException e) {
                 System.out.println("Username is probably already used. Choose another one.");
